@@ -1,62 +1,32 @@
 package eu.iamgio.gump.app
 
 import eu.iamgio.gump.component.Component
-import processing.core.PApplet
 
 /**
  * This is the class that, when extended, represents the main class of an application/program.
  *
  * @author Giorgio Garofalo
  */
-abstract class GumpApplication : PApplet() {
+abstract class GumpApplication {
 
     /**
      * Settings of this application.
      */
     lateinit var settings: AppSettings
-        private set
+        internal set
 
     /**
-     * This is the start method from Processing.
-     * Here settings are initialized.
+     * The canvas that handles drawing on the application screen.
      */
-    override fun settings() {
-        settings = createSettings()
-        size(settings.width, settings.height)
-    }
-
-    /**
-     * This is the initialization method from Processing.
-     */
-    override fun setup() {
-        initListeners()
-    }
-
-    /**
-     * This is the render method from Processing.
-     */
-    override fun draw() {
-        val root = buildRoot()
-        root.draw(this)
-    }
+    private val canvas = Canvas()
 
     /**
      * Launches the application.
      * @param args program arguments
      */
     fun launch(vararg args: String) {
-        main(this::class.java, *args)
-    }
-
-    /**
-     * Listeners that bind a setting to a window property are set.
-     */
-    private fun initListeners() {
-        with(settings) {
-            title.listenAndCall { surface.setTitle(it) }
-            icon.listenAndCall { if(it != null) surface.setIcon(it.toPImage(this@GumpApplication)) }
-            isResizable.listenAndCall { surface.setResizable(it) }
-        }
+        canvas.application = this
+        canvas.launch(*args)
     }
 
     /**

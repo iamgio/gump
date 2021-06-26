@@ -1,5 +1,6 @@
 package eu.iamgio.gump.component
 
+import eu.iamgio.gump.app.Canvas
 import eu.iamgio.gump.app.GumpApplication
 
 /**
@@ -14,12 +15,12 @@ abstract class Component {
      * By default it draws the [Component] built in [build],
      * but it can be overridden to call raw Processing functions.
      */
-    open fun draw(application: GumpApplication) {
-        build(application).draw(application)
+    open fun draw(canvas: Canvas) {
+        build(canvas).draw(canvas)
     }
 
     /**
      * Builds the child component.
      */
-    abstract fun build(application: GumpApplication): Component
+    abstract fun build(canvas: Canvas): Component
 }

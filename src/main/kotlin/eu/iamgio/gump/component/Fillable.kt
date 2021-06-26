@@ -1,6 +1,6 @@
 package eu.iamgio.gump.component
 
-import eu.iamgio.gump.app.GumpApplication
+import eu.iamgio.gump.app.Canvas
 import eu.iamgio.gump.color.Color
 
 /**
@@ -18,7 +18,7 @@ interface Fillable {
     /**
      * Changes the current fill color to [fill].
      */
-    fun GumpApplication.fill() {
+    fun Canvas.fill() {
         this.fill(fill.red.toFloat(), fill.green.toFloat(), fill.blue.toFloat(), fill.alpha.toFloat() * 255F)
     }
 }

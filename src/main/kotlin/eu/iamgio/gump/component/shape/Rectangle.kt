@@ -1,6 +1,6 @@
 package eu.iamgio.gump.component.shape
 
-import eu.iamgio.gump.app.GumpApplication
+import eu.iamgio.gump.app.Canvas
 import eu.iamgio.gump.color.Color
 
 /**
@@ -12,8 +12,8 @@ import eu.iamgio.gump.color.Color
  */
 data class Rectangle(var width: Double, var height: Double, override var fill: Color = Color()) : Shape() {
 
-    override fun draw(application: GumpApplication) {
-        application.fill()
-        application.rect(0F, 0F, width.toFloat(), height.toFloat())
+    override fun draw(canvas: Canvas) {
+        canvas.fill()
+        canvas.rect(0F, 0F, width.toFloat(), height.toFloat())
     }
 }

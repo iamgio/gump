@@ -1,6 +1,6 @@
 package eu.iamgio.gump.image
 
-import eu.iamgio.gump.app.GumpApplication
+import eu.iamgio.gump.app.Canvas
 import processing.core.PImage
 
 /**
@@ -13,8 +13,8 @@ data class Image(val path: String) {
 
     /**
      * Converts this image to a Processing [PImage].
-     * @param application application instance
+     * @param canvas canvas instance
      * @return Image as Processing [PImage]
      */
-    fun toPImage(application: GumpApplication): PImage = application.loadImage(path)
+    fun toPImage(canvas: Canvas): PImage = canvas.loadImage(path)
 }
