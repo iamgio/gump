@@ -8,13 +8,15 @@ import eu.iamgio.gump.observable.observable
  *
  * @param title title of the program
  * @param icon icon of the program, `null` for the default one
+ * @param isResizable whether the window can be resized
  * @param width window width
  * @param height window height
  * @author Giorgio Garofalo
  */
-class AppSettings(
+class AppSettings @JvmOverloads constructor(
         title: String = "Gump Application",
         icon: Image? = null,
+        isResizable: Boolean = true,
         /**
          * The width of the application window.
          */
@@ -23,6 +25,7 @@ class AppSettings(
          * The height of the application window.
          */
         val height: Int = 360,
+
 ) {
     /**
      * The title of the application window.
@@ -34,4 +37,9 @@ class AppSettings(
      * If the wrapped value if `null` the default icon will be used.
      */
     val icon = icon.observable()
+
+    /**
+     * Whether the window can be resized by the user.
+     */
+    val isResizable = isResizable.observable()
 }
