@@ -63,5 +63,6 @@ class Canvas : PApplet() {
         title.listenAndCall { surface.setTitle(it) }
         icon.listenAndCall { if(it != null) surface.setIcon(it.toPImage(this@Canvas)) }
         isResizable.listenAndCall { surface.setResizable(it) }
+        frameRate.listenAndCall { frameRate(it.toFloat()) }
     }
 }

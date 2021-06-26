@@ -9,6 +9,7 @@ import eu.iamgio.gump.observable.observable
  * @param title title of the program
  * @param icon icon of the program, `null` for the default one
  * @param isResizable whether the window can be resized
+ * @param frameRate frames rendered per second
  * @param width window width
  * @param height window height
  * @author Giorgio Garofalo
@@ -17,6 +18,7 @@ class AppSettings @JvmOverloads constructor(
         title: String = "Gump Application",
         icon: Image? = null,
         isResizable: Boolean = true,
+        frameRate: Int = 60,
         /**
          * The width of the application window.
          */
@@ -42,4 +44,9 @@ class AppSettings @JvmOverloads constructor(
      * Whether the window can be resized by the user.
      */
     val isResizable = isResizable.observable()
+
+    /**
+     * How many frames are rendered in a second.
+     */
+    val frameRate = frameRate.observable()
 }
