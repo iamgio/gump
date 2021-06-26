@@ -21,6 +21,12 @@ abstract class GumpApplication {
     private val canvas = Canvas()
 
     /**
+     * How many frames have been rendered since the application was set-up.
+     */
+    val age: Int
+        get() = canvas.age
+
+    /**
      * Launches the application.
      * @param args program arguments
      */

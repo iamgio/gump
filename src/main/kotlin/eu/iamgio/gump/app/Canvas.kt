@@ -16,6 +16,12 @@ class Canvas : PApplet() {
         internal set
 
     /**
+     * How many frames have been rendered since the application was set-up.
+     */
+    var age: Int = 0
+        private set
+
+    /**
      * This is the start method from Processing.
      * Here settings are initialized.
      */
@@ -35,8 +41,12 @@ class Canvas : PApplet() {
      * This is the render method from Processing.
      */
     override fun draw() {
+        noStroke()
+        noFill()
         val root = application.buildRoot()
         root.draw(this)
+
+        age++
     }
 
     /**
