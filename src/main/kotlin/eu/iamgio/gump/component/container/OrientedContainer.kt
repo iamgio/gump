@@ -30,34 +30,45 @@ open class OrientedContainer(children: List<DrawableComponent>, private val orie
 
         // Draw children
         children.forEachIndexed { index, component ->
-            // Space between this component and the previous one
-            when(orientation) {
-                Orientation.VERTICAL -> {
-                    val deltaWidth = component.deltaX
-                    if(deltaWidth > width) width = deltaWidth
-                }
-                Orientation.HORIZONTAL -> {
-                    val deltaHeight = component.deltaY
-                    if(deltaHeight > height) height = deltaHeight
-                }
-            }
-
             // Draw the component
             component.draw(canvas)
 
+            // Spacing between this item and the next
+            // by checking if this is the last component in its parent's children.
             val spacing = if(index < children.size - 1) this.spacing else .0
 
-            // Translate the position
+            // Find width (for vertical) or height (for horizontal)
+            // and translate the component's position
             when(orientation) {
                 Orientation.VERTICAL -> {
-                    val delta = component.height + spacing
-                    canvas.translate(0F, delta.toFloat())
-                    height += delta
+                    // Check if this component's width
+                    // is higher than this container's width,
+                    // in that case update its value
+                    val deltaX = component.deltaX
+                    if(deltaX > width) width = deltaX
+
+                    // Get this component's height
+                    // and apply a Y-translation to the canvas to that value
+                    // so that the component that follows will be
+                    // placed right below
+                    val deltaY = component.deltaY + spacing
+                    canvas.translate(0F, deltaY.toFloat())
+                    height += deltaY
                 }
                 Orientation.HORIZONTAL -> {
-                    val delta = component.width + spacing
-                    canvas.translate(delta.toFloat(), 0F)
-                    width += delta
+                    // Check if this component's height
+                    // is higher than this container's height,
+                    // in that case update its value
+                    val deltaY = component.deltaY
+                    if(deltaY > height) height = deltaY
+
+                    // Get this component's width
+                    // and apply a X-translation to the canvas to that value
+                    // so that the component that follows will be
+                    // placed right next to it
+                    val deltaX = component.deltaX + spacing
+                    canvas.translate(deltaX.toFloat(), 0F)
+                    width += deltaX
                 }
             }
         }
