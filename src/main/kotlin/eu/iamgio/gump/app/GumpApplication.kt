@@ -1,6 +1,6 @@
 package eu.iamgio.gump.app
 
-import eu.iamgio.gump.component.Component
+import eu.iamgio.gump.component.DrawableComponent
 
 /**
  * This is the class that, when extended, represents the main class of an application/program.
@@ -46,5 +46,5 @@ abstract class GumpApplication {
      * This method generates the root content of the application.
      * @return application root
      */
-    abstract fun buildRoot(): Component
+    abstract fun buildRoot(): DrawableComponent
 }

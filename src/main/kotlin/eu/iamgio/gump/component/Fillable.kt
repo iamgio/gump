@@ -4,7 +4,7 @@ import eu.iamgio.gump.app.Canvas
 import eu.iamgio.gump.color.Color
 
 /**
- * Represents a [Component] that has a mutable fill color.
+ * Represents a [DrawableComponent] that has a mutable fill color.
  *
  * @author Giorgio Garofalo
  */
