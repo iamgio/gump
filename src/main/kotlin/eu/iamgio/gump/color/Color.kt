@@ -30,6 +30,12 @@ data class Color(val red: Int, val green: Int, val blue: Int, val alpha: Double 
          * @return decoded color from hex
          */
         fun hex(hex: String) = java.awt.Color.decode(if(hex.startsWith("#")) hex else "#$hex").toColor()
+
+        /**
+         * @param rgb value for red, green and blue
+         * @return grayscale color
+         */
+        fun grayscale(rgb: Int) = Color(rgb, rgb, rgb)
     }
 }
 
