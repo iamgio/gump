@@ -3,22 +3,23 @@ package eu.iamgio.gump.component.container
 import eu.iamgio.gump.app.Canvas
 import eu.iamgio.gump.component.DrawableComponent
 import eu.iamgio.gump.component.MultipleChildrenComponent
-import eu.iamgio.gump.component.position.Orientation
 
 /**
- * A component that displays components one next to another in a direction specified by [orientation].
+ * A component that displays components one next to another in a direction specified by the sub-class.
  *
  * @param children children components
- * @param orientation where components should be displayed relatively to the previous one
  * @see Column
  * @see Row
  * @author Giorgio Garofalo
  */
-open class OrientedContainer(children: List<DrawableComponent>, private val orientation: Orientation) : MultipleChildrenComponent(children) {
+abstract class OrientedContainer(children: List<DrawableComponent>) : MultipleChildrenComponent(children) {
 
     override var width = .0
     override var height = .0
 
+    /**
+     * Space between children.
+     */
     var spacing = .0
 
     override fun draw(canvas: Canvas) {
@@ -33,47 +34,35 @@ open class OrientedContainer(children: List<DrawableComponent>, private val orie
             // Draw the component
             component.draw(canvas)
 
-            // Spacing between this item and the next
-            // by checking if this is the last component in its parent's children.
-            val spacing = if(index < children.size - 1) this.spacing else .0
-
             // Find width (for vertical) or height (for horizontal)
             // and translate the component's position
-            when(orientation) {
-                Orientation.VERTICAL -> {
-                    // Check if this component's width
-                    // is higher than this container's width,
-                    // in that case update its value
-                    val deltaX = component.deltaX
-                    if(deltaX > width) width = deltaX
+            handleSize(component)
 
-                    // Get this component's height
-                    // and apply a Y-translation to the canvas to that value
-                    // so that the component that follows will be
-                    // placed right below
-                    val deltaY = component.deltaY + spacing
-                    canvas.translate(0F, deltaY.toFloat())
-                    height += deltaY
-                }
-                Orientation.HORIZONTAL -> {
-                    // Check if this component's height
-                    // is higher than this container's height,
-                    // in that case update its value
-                    val deltaY = component.deltaY
-                    if(deltaY > height) height = deltaY
-
-                    // Get this component's width
-                    // and apply a X-translation to the canvas to that value
-                    // so that the component that follows will be
-                    // placed right next to it
-                    val deltaX = component.deltaX + spacing
-                    canvas.translate(deltaX.toFloat(), 0F)
-                    width += deltaX
-                }
+            // Define the next component position if this is not the last one
+            // and translate the canvas
+            if(index < children.size) {
+                handleNextPosition(canvas, component)
             }
         }
 
-        // Load initial translation
+        // Restore initial translation
         canvas.popMatrix()
     }
+
+    /**
+     * Updates this container's size.
+     * For instance, if this is a [Column], it will check [component] width,
+     * compare it to [width] and update its value.
+     * @param component component to compare size with
+     */
+    abstract fun handleSize(component: DrawableComponent)
+
+    /**
+     * Updates the canvas translation for the next component.
+     * For instance, if this is a [Column],
+     * the next component will be placed right below [component].
+     * @param canvas application canvas
+     * @param component current component
+     */
+    abstract fun handleNextPosition(canvas: Canvas, component: DrawableComponent)
 }
