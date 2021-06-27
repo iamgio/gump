@@ -5,7 +5,7 @@ import eu.iamgio.gump.component.DrawableComponent
 import eu.iamgio.gump.component.MultipleChildrenComponent
 
 /**
- * A component that overlaps other components one on top of the others.
+ * A component that overlaps other components one on top of another.
  *
  * @param children children components
  * @author Giorgio Garofalo
@@ -21,11 +21,8 @@ class Stack(children: List<DrawableComponent>) : MultipleChildrenComponent(child
         width = .0
         height = .0
         children.forEach { component ->
-            val deltaWidth = component.x + component.width
-            if(deltaWidth > width) width = deltaWidth
-
-            val deltaHeight = component.y + component.width
-            height = deltaHeight
+            width = width.coerceAtLeast(component.deltaX)
+            height = height.coerceAtLeast(component.deltaY)
 
             component.draw(canvas)
         }

@@ -6,6 +6,7 @@ import eu.iamgio.gump.color.Color
 import eu.iamgio.gump.component.DrawableComponent
 import eu.iamgio.gump.component.container.Column
 import eu.iamgio.gump.component.container.Row
+import eu.iamgio.gump.component.container.Stack
 import eu.iamgio.gump.component.shape.Rectangle
 
 /**
@@ -18,7 +19,10 @@ class GumpTest : GumpApplication() {
     override fun buildRoot(): DrawableComponent {
         return Row(
                 Column(
-                        Rectangle(150.0, 50.0, Color.hsb(super.age / 200F, 1F, 1F)),
+                        Stack(
+                                Rectangle(150.0, 50.0, Color.hsb(super.age / 200F, 1F, 1F)),
+                                Rectangle(100.0, 20.0, Color(255, 0, 0))
+                        ),
                         Row(
                                 Rectangle(50.0, 25.0, Color(255, 0, 0)),
                                 Rectangle(150.0, 35.0, Color(255, 255, 0)),
