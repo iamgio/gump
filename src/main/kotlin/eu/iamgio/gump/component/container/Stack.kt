@@ -24,7 +24,7 @@ class Stack(children: List<DrawableComponent>) : MultipleChildrenComponent(child
             width = width.coerceAtLeast(component.deltaX)
             height = height.coerceAtLeast(component.deltaY)
 
-            component.draw(canvas)
+            component.render(canvas)
         }
     }
 }

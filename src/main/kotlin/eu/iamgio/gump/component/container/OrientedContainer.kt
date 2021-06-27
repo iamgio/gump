@@ -32,7 +32,7 @@ abstract class OrientedContainer(children: List<DrawableComponent>) : MultipleCh
         // Draw children
         children.forEachIndexed { index, component ->
             // Draw the component
-            component.draw(canvas)
+            component.render(canvas)
 
             // Find width (for vertical) or height (for horizontal)
             // and translate the component's position

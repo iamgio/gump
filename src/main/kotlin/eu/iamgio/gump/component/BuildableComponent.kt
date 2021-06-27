@@ -14,7 +14,7 @@ abstract class BuildableComponent : DrawableComponent() {
     override var height = 0.0
 
     override fun draw(canvas: Canvas) {
-        build(canvas).draw(canvas)
+        build(canvas).render(canvas)
     }
 
     /**

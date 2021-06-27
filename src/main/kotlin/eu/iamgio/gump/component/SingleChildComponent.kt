@@ -11,6 +11,6 @@ import eu.iamgio.gump.app.Canvas
 abstract class SingleChildComponent(val child: DrawableComponent) : DrawableComponent() {
 
     override fun draw(canvas: Canvas) {
-        child.draw(canvas)
+        child.render(canvas)
     }
 }

@@ -44,7 +44,7 @@ class Canvas : PApplet() {
         noStroke()
         noFill()
         val root = application.buildRoot()
-        root.draw(this)
+        root.render(this)
 
         age++
     }

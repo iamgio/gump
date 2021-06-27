@@ -13,7 +13,6 @@ import eu.iamgio.gump.color.Color
 data class Rectangle(override var width: Double, override var height: Double, override var fill: Color = Color()) : Shape() {
 
     override fun draw(canvas: Canvas) {
-        canvas.fill()
         canvas.rect(0F, 0F, width.toFloat(), height.toFloat())
     }
 }
