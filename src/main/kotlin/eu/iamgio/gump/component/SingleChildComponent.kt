@@ -8,7 +8,7 @@ import eu.iamgio.gump.app.Canvas
  * @param child component child
  * @author Giorgio Garofalo
  */
-open class SingleChildComponent(val child: DrawableComponent) : DrawableComponent() {
+abstract class SingleChildComponent(val child: DrawableComponent) : DrawableComponent() {
 
     override fun draw(canvas: Canvas) {
         child.draw(canvas)

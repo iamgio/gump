@@ -10,6 +10,9 @@ import eu.iamgio.gump.app.GumpApplication
  */
 abstract class BuildableComponent : DrawableComponent() {
 
+    override var width = 0.0
+    override var height = 0.0
+
     override fun draw(canvas: Canvas) {
         build(canvas).draw(canvas)
     }

@@ -10,7 +10,7 @@ import eu.iamgio.gump.color.Color
  * @param height height of the rectangle
  * @author Giorgio Garofalo
  */
-data class Rectangle(var width: Double, var height: Double, override var fill: Color = Color()) : Shape() {
+data class Rectangle(override var width: Double, override var height: Double, override var fill: Color = Color()) : Shape() {
 
     override fun draw(canvas: Canvas) {
         canvas.fill()
