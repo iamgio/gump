@@ -2,6 +2,7 @@ package eu.iamgio.gump.component
 
 import eu.iamgio.gump.app.Canvas
 import eu.iamgio.gump.app.GumpApplication
+import eu.iamgio.gump.component.properties.ComponentProperty
 
 /**
  * Represents an element in the scene of a [GumpApplication] that draws itself through Processing functions.
@@ -49,17 +50,17 @@ abstract class DrawableComponent {
      * @param canvas application canvas
      */
     fun render(canvas: Canvas) {
-        // Set fill color
-        if(this is Fillable) canvas.fill()
-
         // Apply translation to x and y
         canvas.pushMatrix()
         canvas.translate(x.toFloat(), y.toFloat())
 
-        // Draw the content
+        // Apply component properties such as Fillable and Paddingable.
+        if(this is ComponentProperty) apply(canvas)
+
+        // Draw the content.
         draw(canvas)
 
-        // Restore translation
+        // Restore the initial translation.
         canvas.popMatrix()
     }
 
