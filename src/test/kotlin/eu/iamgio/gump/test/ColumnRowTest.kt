@@ -1,6 +1,5 @@
 package eu.iamgio.gump.test
 
-import eu.iamgio.gump.app.AppSettings
 import eu.iamgio.gump.app.GumpApplication
 import eu.iamgio.gump.color.Color
 import eu.iamgio.gump.component.DrawableComponent
@@ -13,9 +12,7 @@ import eu.iamgio.gump.component.shape.Rectangle
 /**
  * @author Giorgio Garofalo
  */
-class GumpTest : GumpApplication() {
-
-    override fun createSettings() = AppSettings()
+class ColumnRowTest : GumpApplication() {
 
     override fun buildRoot(): DrawableComponent {
         return Row(
@@ -39,5 +36,5 @@ class GumpTest : GumpApplication() {
 }
 
 fun main() {
-    GumpTest().launch()
+    ColumnRowTest().launch()
 }
