@@ -52,9 +52,10 @@ abstract class DrawableComponent {
     fun render(canvas: Canvas) {
         // Apply translation to x and y
         canvas.pushMatrix()
+
         canvas.translate(x.toFloat(), y.toFloat())
 
-        // Apply component properties such as Fillable and Paddingable.
+        // Apply component properties such as Fillable and Padding.
         if(this is ComponentProperty) apply(canvas)
 
         // Draw the content.

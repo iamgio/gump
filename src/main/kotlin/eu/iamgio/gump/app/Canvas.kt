@@ -43,8 +43,7 @@ class Canvas : PApplet() {
     override fun draw() {
         noStroke()
         noFill()
-        val root = application.buildRoot()
-        root.render(this)
+        application.buildRoot().render(this)
 
         age++
     }

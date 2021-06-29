@@ -12,6 +12,12 @@ data class Color(val red: Int, val green: Int, val blue: Int, val alpha: Double 
     fun withOpacity(alpha: Double) = this.copy(alpha = alpha)
 
     companion object {
+
+        /**
+         * A transparent color.
+         */
+        val TRANSPARENT = Color(0, 0, 0, .0)
+
         /**
          * @return AWT color to Gump Color
          */

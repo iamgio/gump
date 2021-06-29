@@ -2,17 +2,23 @@ package eu.iamgio.gump.component.properties
 
 import eu.iamgio.gump.app.Canvas
 import eu.iamgio.gump.component.DrawableComponent
+import eu.iamgio.gump.component.container.Container
 
 /**
  * Represents a [DrawableComponent] that has a padding.
  *
  * @author Giorgio Garofalo
  */
-interface Paddingable : ComponentProperty {
+interface Padding : ComponentProperty {
     val padding: Insets
 
+    /**
+     * Applies a translation equals to the [padding] value.
+     * This needs further operations handled by the component.
+     * @see Container
+     */
     override fun apply(canvas: Canvas) {
-        canvas.translate((padding.top - padding.bottom).toFloat(), (padding.right - padding.left).toFloat())
+        canvas.translate(padding.left.toFloat(), padding.top.toFloat())
     }
 }
 
@@ -28,4 +34,16 @@ data class Insets(var top: Double = .0, var right: Double = .0, var bottom: Doub
         bottom = topRightBottomLeft
         left = topRightBottomLeft
     }
+
+    /**
+     * Total horizontal offset.
+     */
+    val horizontal: Double
+        get() = left + right
+
+    /**
+     * Total vertical offset.
+     */
+    val vertical: Double
+        get() = top + bottom
 }
