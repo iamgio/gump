@@ -20,7 +20,9 @@ class Stack(children: List<DrawableComponent>) : MultipleChildrenComponent(child
     override fun draw(canvas: Canvas) {
         width = .0
         height = .0
+
         children.forEach { component ->
+            component.parent = this
             width = width.coerceAtLeast(component.deltaX)
             height = height.coerceAtLeast(component.deltaY)
 

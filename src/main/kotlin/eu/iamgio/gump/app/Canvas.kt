@@ -1,5 +1,6 @@
 package eu.iamgio.gump.app
 
+import eu.iamgio.gump.component.Scene
 import processing.core.PApplet
 
 /**
@@ -14,6 +15,9 @@ class Canvas : PApplet() {
      */
     lateinit var application: GumpApplication
         internal set
+
+    lateinit var scene: Scene
+        private set
 
     /**
      * How many frames have been rendered since the application was set-up.
@@ -35,6 +39,8 @@ class Canvas : PApplet() {
      */
     override fun setup() {
         initListeners(application.settings)
+
+        scene = Scene(this)
     }
 
     /**
@@ -43,7 +49,11 @@ class Canvas : PApplet() {
     override fun draw() {
         noStroke()
         noFill()
-        application.buildRoot().render(this)
+
+        val root = application.buildRoot()
+        scene.root = root
+        root.parent = scene
+        root.render(this)
 
         age++
     }

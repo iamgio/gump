@@ -11,6 +11,8 @@ import eu.iamgio.gump.component.properties.ComponentProperty
  */
 abstract class DrawableComponent {
 
+    var parent: DrawableComponent? = null
+
     /**
      * X translation of this component.
      */
@@ -50,9 +52,15 @@ abstract class DrawableComponent {
      * @param canvas application canvas
      */
     fun render(canvas: Canvas) {
-        // Apply translation to x and y
+        // Set child's parent if this is a SingleChildComponent.
+        // This has to be done manually for MultipleChildrenComponent
+        // for optimization purposes.
+        if(this is SingleChildComponent) child.parent = this
+
+        // Save the initial translation
         canvas.pushMatrix()
 
+        // Apply translation to x and y.
         canvas.translate(x.toFloat(), y.toFloat())
 
         // Apply component properties such as Fillable and Padding.

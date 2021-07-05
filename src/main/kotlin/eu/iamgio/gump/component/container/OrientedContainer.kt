@@ -31,6 +31,9 @@ abstract class OrientedContainer(children: List<DrawableComponent>) : MultipleCh
 
         // Draw children
         children.forEachIndexed { index, component ->
+            // Set parent
+            component.parent = this
+
             // Draw the component
             component.render(canvas)
 
